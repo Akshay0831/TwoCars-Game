@@ -150,7 +150,25 @@ void random1(int &x,int &y){
 	y = _min + rand() % (_maxY - _min);
 }
 
-drawSquare() {
+void drawSquare(int squareX, int squareY, float R, float G, float B) {
+	glColor3f(R, G, B);
+	glBegin(GL_POLYGON);
+		glVertex2f(squareX,squareY+0.2);
+		glVertex2f(squareX+0.2,squareY);
+		glVertex2f(squareX+3.8,squareY);
+		glVertex2f(squareX+4,squareY+0.2);
+		glVertex2f(squareX+4,squareY+2.8);
+		glVertex2f(squareX+3.8,squareY+3);
+		glVertex2f(squareX+0.2,squareY+3);
+		glVertex2f(squareX,squareY+2.8);
+		glVertex2f(squareX,squareY+0.2);
+	glEnd();
+	
+	glColor3f(1.0,1.0,1.0);
+	glRectf(squareX+0.5,squareY+0.5,squareX+3.5,squareY+2.5);
+	
+	glColor3f(R, G, B);
+	glRectf(squareX+1,squareY+1,squareX+3,squareY+2);
 }
 
 void drawSquares(){
@@ -159,45 +177,14 @@ void drawSquares(){
 		score++;
 	}
 	Square1 = false;
-	glColor3f(0.0, 0.2, 1.0);
-	glBegin(GL_POLYGON);
-		glVertex2f(SquareX1,SquareY1+0.2);
-		glVertex2f(SquareX1+0.2,SquareY1);
-		glVertex2f(SquareX1+3.8,SquareY1);
-		glVertex2f(SquareX1+4,SquareY1+0.2);
-		glVertex2f(SquareX1+4,SquareY1+2.8);
-		glVertex2f(SquareX1+3.8,SquareY1+3);
-		glVertex2f(SquareX1+0.2,SquareY1+3);
-		glVertex2f(SquareX1,SquareY1+2.8);
-		glVertex2f(SquareX1,SquareY1+0.2);
-	glEnd();
+	drawSquare(SquareX1, SquareY1, 0.0, 0.2, 1.0);
 
 	if(Square2){
 		SquareX2=posX2;SquareY2=25+(SquareY1+10)%10;
 		score++;
 	}
 	Square2 = false;	
-	glColor3f(1.0,0.0,0.0);
-	glBegin(GL_POLYGON);
-		glVertex2f(SquareX2,SquareY2+0.2);
-		glVertex2f(SquareX2+0.2,SquareY2);
-		glVertex2f(SquareX2+3.8,SquareY2);
-		glVertex2f(SquareX2+4,SquareY2+0.2);
-		glVertex2f(SquareX2+4,SquareY2+2.8);
-		glVertex2f(SquareX2+3.8,SquareY2+3);
-		glVertex2f(SquareX2+0.2,SquareY2+3);
-		glVertex2f(SquareX2,SquareY2+2.8);
-		glVertex2f(SquareX2,SquareY2+0.2);
-	glEnd();
-	
-	glColor3f(1.0,1.0,1.0);
-	glRectf(SquareX1+0.5,SquareY1+0.5,SquareX1+3.5,SquareY1+2.5);
-	glRectf(SquareX2+0.5,SquareY2+0.5,SquareX2+3.5,SquareY2+2.5);
-	
-	glColor3f(0.0, 0.2, 1.0);
-	glRectf(SquareX1+1,SquareY1+1,SquareX1+3,SquareY1+2);
-	glColor3f(1.0, 0.0, 0.0);
-	glRectf(SquareX2+1,SquareY2+1,SquareX2+3,SquareY2+2);
+	drawSquare(SquareX2, SquareY2, 1.0, 0.0, 0.0);
 }
 
 void drawText(const char* ch,int xpos, int ypos, void *font){
