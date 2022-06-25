@@ -400,7 +400,7 @@ void timerFunc(int){
 		drawText("GAME OVER", 14,35,GLUT_BITMAP_TIMES_ROMAN_24);
 		glColor3f(1,1,1);
 		drawText("Press Q to quit", 14,20,GLUT_BITMAP_HELVETICA_18);
-		drawText("Press R to Replay", 14,20,GLUT_BITMAP_HELVETICA_18);
+		drawText("Press R to Replay", 13,24,GLUT_BITMAP_HELVETICA_18);
 		drawText("Press Esc for Main Menu", 12, 18,GLUT_BITMAP_HELVETICA_18);
 		glutSwapBuffers();
 	}
