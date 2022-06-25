@@ -16,7 +16,7 @@
 #define RIGHT 2
 #define LEFT -2
 #define PI 3.1415
-#define BLEN 50
+#define BLEN 60
 
 using namespace std;
 
@@ -29,7 +29,7 @@ int score = 0,i;
 
 int lb = rand(), rb = rand();
 
-bool Square1 = false, Square2 = false, Circle1=false, Circle2=true;
+bool Square1 = false, Square2 = false, Circle1=true, Circle2=true;
 char buffer[10], bufferHS[10];
 
 void drawLanes(){
@@ -232,7 +232,7 @@ void drawCircles(){
 		else
 			CircleX1=3+WIDTH/4;
 		CircleY1 = HEIGHT-3;
-		score+=3;
+		score++;
 		Circle1 = false;
 	}
 	drawSquare(CircleX1, CircleY1, 1.0, 0.0, 0.0);
@@ -363,6 +363,12 @@ void timerFunc(int){
 			Circle2 = true;
 		}
 		
+		if(CircleY1<=0 && !Circle1)
+			gameState = GAMEOVER;
+		
+		if(CircleY2<=0 && !Circle2)
+			gameState = GAMEOVER;
+		
 			
 	}
 	else if(gameState == PAUSED){
@@ -441,22 +447,24 @@ void NormalKeyHandler(unsigned char key,int x,int y){
 			break;
 		case 040:
 			if(gameState == MAINMENU){
-				SquareX1=3, SquareY1=-1, SquareX2=3+WIDTH/2, SquareY2=-1, CircleX1, CircleY1=-1, CircleX2=3+3*WIDTH/2, CircleY2=-1;
+		 		SquareX1=3; SquareY1=-1, SquareX2=3+WIDTH/2; SquareY2=-1; CircleX1; CircleY1=-1; Circle1=true; Circle2=true; CircleX2=-1; CircleY2=-1;
 				 gameState=RUNNING;
+		 		score=0;
 			}
 		 	break;
 		case 033:
 		 	if(gameState == RUNNING) gameState = PAUSED;
-		 	else if(gameState == PAUSED){ 
-		 		SquareX1=3, SquareY1=-1, SquareX2=3+WIDTH/2, SquareY2=-1, CircleX1, CircleY1=-1, CircleX2=3+3*WIDTH/2, CircleY2=-1;
+		 	else if(gameState == PAUSED){
+		 		SquareX1=3; SquareY1=-1, SquareX2=3+WIDTH/2; SquareY2=-1; CircleX1; CircleY1=-1; Circle1=true; Circle2=true; CircleX2=-1; CircleY2=-1;
 		 		gameState = RUNNING;
 		 		
 		 	}
 			else if(gameState == GAMEOVER) gameState = MAINMENU;
 	 		break;
 	 	case 'r':if(gameState == GAMEOVER) { 
-		 		SquareX1=3, SquareY1=-1, SquareX2=3+WIDTH/2, SquareY2=-1, CircleX1, CircleY1=-1, CircleX2=3+3*WIDTH/2, CircleY2=-1;
+		 		SquareX1=3; SquareY1=-1, SquareX2=3+WIDTH/2; SquareY2=-1; CircleX1; CircleY1=-1; Circle1=true; Circle2=true; CircleX2=-1; CircleY2=-1;
 		 		gameState = RUNNING;
+		 		score=0;
 		 		
 		 	}
 	 		break;
