@@ -150,7 +150,7 @@ void drawCars(){
 		Circle2=true;
 		
 }
-
+/*
 void drawFilledCircle(GLfloat x, GLfloat y, GLfloat radius){
 	int i;
 	int triangleAmount = 20; //# of triangles used to draw circle
@@ -179,7 +179,7 @@ void drawCircle(int circleX, int circleY, float R, float G, float B){
 	glColor3f(R, G, B);
 	drawFilledCircle(circleX, circleY, 0.6);
 }
-
+*/
 void drawSquare(int squareX, int squareY, float R, float G, float B) {
 	glColor3f(R, G, B);
 	glBegin(GL_POLYGON);
@@ -400,6 +400,7 @@ void timerFunc(int){
 		drawText("GAME OVER", 14,35,GLUT_BITMAP_TIMES_ROMAN_24);
 		glColor3f(1,1,1);
 		drawText("Press Q to quit", 14,20,GLUT_BITMAP_HELVETICA_18);
+		drawText("Press R to Replay", 14,20,GLUT_BITMAP_HELVETICA_18);
 		drawText("Press Esc for Main Menu", 12, 18,GLUT_BITMAP_HELVETICA_18);
 		glutSwapBuffers();
 	}
@@ -439,12 +440,25 @@ void NormalKeyHandler(unsigned char key,int x,int y){
 			}
 			break;
 		case 040:
-			if(gameState == MAINMENU) gameState=RUNNING;
+			if(gameState == MAINMENU){
+				SquareX1=3, SquareY1=-1, SquareX2=3+WIDTH/2, SquareY2=-1, CircleX1, CircleY1=-1, CircleX2=3+3*WIDTH/2, CircleY2=-1;
+				 gameState=RUNNING;
+			}
 		 	break;
 		case 033:
 		 	if(gameState == RUNNING) gameState = PAUSED;
-		 	else if(gameState == PAUSED) gameState = RUNNING;
+		 	else if(gameState == PAUSED){ 
+		 		SquareX1=3, SquareY1=-1, SquareX2=3+WIDTH/2, SquareY2=-1, CircleX1, CircleY1=-1, CircleX2=3+3*WIDTH/2, CircleY2=-1;
+		 		gameState = RUNNING;
+		 		
+		 	}
 			else if(gameState == GAMEOVER) gameState = MAINMENU;
+	 		break;
+	 	case 'r':if(gameState == GAMEOVER) { 
+		 		SquareX1=3, SquareY1=-1, SquareX2=3+WIDTH/2, SquareY2=-1, CircleX1, CircleY1=-1, CircleX2=3+3*WIDTH/2, CircleY2=-1;
+		 		gameState = RUNNING;
+		 		
+		 	}
 	 		break;
 		case 'q': 
 			exit(0);	 
